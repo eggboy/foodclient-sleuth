@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: foodclient
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          sleuth: debug
+  pattern:
+    level: "%clr(%5p) %clr([${spring.application.name:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-},%X{X-Span-Export:-}]){yellow}"
+
+foodservice:
+  url: http://jay-foodservice.cfapps.io/food/
